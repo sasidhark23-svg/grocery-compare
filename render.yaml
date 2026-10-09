@@ -1,0 +1,60 @@
+services:
+  - type: pserv
+    name: grocerycompare-mysql
+    runtime: image
+    plan: 0.5c-512mb
+    region: singapore
+    image:
+      url: docker.io/library/mysql:8.4
+    disk:
+      name: mysql-data
+      mountPath: /var/lib/mysql
+      sizeGB: 10
+    envVars:
+      - key: MYSQL_DATABASE
+        value: grocerycompare
+      - key: MYSQL_USER
+        value: grocery_app
+      - key: MYSQL_PASSWORD
+        generateValue: true
+      - key: MYSQL_ROOT_PASSWORD
+        generateValue: true
+
+  - type: web
+    name: grocerycompare-api
+    runtime: docker
+    plan: 0.5c-512mb
+    region: singapore
+    dockerfilePath: backend/Dockerfile
+    dockerContext: backend
+    healthCheckPath: /api/health
+    buildFilter:
+      paths:
+        - backend/**
+        - render.yaml
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: mysql
+      - key: DB_HOSTPORT
+        fromService:
+          name: grocerycompare-mysql
+          type: pserv
+          property: hostport
+      - key: DB_NAME
+        value: grocerycompare
+      - key: DB_USERNAME
+        fromService:
+          name: grocerycompare-mysql
+          type: pserv
+          envVarKey: MYSQL_USER
+      - key: DB_PASSWORD
+        fromService:
+          name: grocerycompare-mysql
+          type: pserv
+          envVarKey: MYSQL_PASSWORD
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRATION
+        value: "86400000"
+      - key: DEMO_USERS_ENABLED
+        value: "false"

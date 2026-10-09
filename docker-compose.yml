@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: grocerycompare-mysql
+    environment:
+      MYSQL_DATABASE: grocerycompare
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-local_dev_only_root}
+      MYSQL_USER: ${DB_USERNAME:-grocerycompare}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-local_dev_only}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -p\"$$MYSQL_ROOT_PASSWORD\" --silent"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  backend:
+    build: ./backend
+    container_name: grocerycompare-backend
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: mysql
+      DB_URL: jdbc:mysql://mysql:3306/grocerycompare?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      DB_USERNAME: ${DB_USERNAME:-grocerycompare}
+      DB_PASSWORD: ${DB_PASSWORD:-local_dev_only}
+      JWT_SECRET: ${JWT_SECRET:?Set JWT_SECRET in .env before starting}
+      CORS_ALLOWED_ORIGINS: ${CORS_ALLOWED_ORIGINS:-http://localhost:5173}
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_BASE_URL: ${VITE_API_BASE_URL:-/api}
+    container_name: grocerycompare-frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+
+volumes:
+  mysql_data:

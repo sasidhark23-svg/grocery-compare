@@ -4,6 +4,15 @@ GroceryCompare is a grocery catalog and store price comparison demo. It includes
 
 > **Demo data:** The bundled catalog, prices, store availability, and any pre-existing chart records are illustrative sample data. They are not verified live retailer information.
 
+## Live deployments
+
+- **Frontend:** [GroceryCompare website](https://grocery-compare-chi-ten.vercel.app/)
+- **Backend catalog API:** [GET /api/products](https://grocerycompare-api-production.up.railway.app/api/products)
+- **Backend health check:** [GET /api/health](https://grocerycompare-api-production.up.railway.app/api/health)
+- **Source repository:** [sasidhark23-svg/grocery-compare](https://github.com/sasidhark23-svg/grocery-compare)
+
+The backend root URL is an API service, not a web page. Open the catalog API link above to see its JSON response. Product images, prices, and availability are demo examples, not live retailer data.
+
 ## Stack
 
 - Frontend: React 18, Vite, Tailwind CSS, Zustand, Axios, Recharts

@@ -1,18 +1,12 @@
 import React from 'react';
 import { Star, MapPin, Globe } from 'lucide-react';
+import StoreLogo from './StoreLogo';
 
 export default function StoreCard({ store }) {
-  const defaultLogo = "https://images.unsplash.com/photo-1578916171728-46686eac8d58?w=100";
-
   return (
     <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4 hover:shadow-md transition flex items-center space-x-4">
       <div className="w-14 h-14 rounded-xl bg-gray-50 border border-gray-100 overflow-hidden flex-shrink-0 flex items-center justify-center">
-        <img
-          src={store.storeLogo || defaultLogo}
-          alt={store.storeName}
-          className="w-full h-full object-cover"
-          onError={(e) => { e.target.src = defaultLogo; }}
-        />
+        <StoreLogo storeName={store.storeName} />
       </div>
 
       <div className="flex-1 min-w-0">

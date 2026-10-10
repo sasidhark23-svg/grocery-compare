@@ -1,5 +1,6 @@
 import React from 'react';
 import { Award, CheckCircle2, AlertTriangle, XCircle, TrendingDown, Star } from 'lucide-react';
+import StoreLogo from './StoreLogo';
 
 export default function PriceComparisonTable({ deals = [], summary = {} }) {
   if (!deals || deals.length === 0) {
@@ -51,12 +52,7 @@ export default function PriceComparisonTable({ deals = [], summary = {} }) {
               {/* Store Logo & Details */}
               <div className="flex items-center space-x-4">
                 <div className="w-12 h-12 rounded-xl bg-gray-50 border border-gray-100 flex-shrink-0 flex items-center justify-center overflow-hidden">
-                  <img
-                    src={deal.storeLogo || "https://images.unsplash.com/photo-1578916171728-46686eac8d58?w=100"}
-                    alt={deal.storeName}
-                    className="w-full h-full object-cover"
-                    onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = "https://images.unsplash.com/photo-1578916171728-46686eac8d58?w=100"; }}
-                  />
+                  <StoreLogo storeName={deal.storeName} />
                 </div>
                 <div>
                   <div className="flex items-center space-x-2">

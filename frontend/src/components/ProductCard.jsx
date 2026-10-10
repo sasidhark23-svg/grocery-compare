@@ -4,8 +4,8 @@ import { motion } from 'framer-motion';
 import { Tag, ArrowRight } from 'lucide-react';
 
 export default function ProductCard({ product }) {
-  const defaultImage = "https://images.unsplash.com/photo-1542838132-92c53300491e?w=600&auto=format&fit=crop&q=80";
-  const isPackagedProductPhoto = product.imageUrl?.includes('images.openfoodfacts.org');
+  const isPackagedProductPhoto = ['images.openfoodfacts.org', 'images.openproductsfacts.org', 'images.openbeautyfacts.org']
+    .some((domain) => product.imageUrl?.includes(domain));
 
   return (
     <motion.div
@@ -29,10 +29,10 @@ export default function ProductCard({ product }) {
         {/* Product Image */}
         <div className="w-full h-40 mb-4 rounded-xl overflow-hidden bg-gray-50 flex items-center justify-center relative">
           <img
-            src={product.imageUrl || defaultImage}
+            src={product.imageUrl}
             alt={product.name}
             className={`w-full h-full ${isPackagedProductPhoto ? 'object-contain p-2 bg-white' : 'object-cover'} group-hover:scale-105 transition duration-300`}
-            onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = defaultImage; }}
+            onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.classList.add('hidden'); }}
           />
         </div>
 

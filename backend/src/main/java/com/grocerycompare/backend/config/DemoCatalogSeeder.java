@@ -16,13 +16,8 @@ import java.util.List;
 @Component
 public class DemoCatalogSeeder implements CommandLineRunner {
     private static final String OPEN_FOOD_FACTS = "https://images.openfoodfacts.org/images/products/";
-    private static final String PRODUCE_IMAGE = "https://images.unsplash.com/photo-1542838132-92c53300491e?w=600&auto=format&fit=crop&q=80";
-    private static final String FRUIT_IMAGE = "https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=600&auto=format&fit=crop&q=80";
-    private static final String PANTRY_IMAGE = "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=600&auto=format&fit=crop&q=80";
-    private static final String DAIRY_IMAGE = "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=600&auto=format&fit=crop&q=80";
-    private static final String SNACK_IMAGE = "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=600&auto=format&fit=crop&q=80";
-    private static final String DRINK_IMAGE = "https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=600&auto=format&fit=crop&q=80";
-    private static final String HOME_IMAGE = "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=600&auto=format&fit=crop&q=80";
+    private static final String OPEN_PRODUCTS_FACTS = "https://images.openproductsfacts.org/images/products/";
+    private static final String OPEN_BEAUTY_FACTS = "https://images.openbeautyfacts.org/images/products/";
 
     private final ProductRepository products;
     private final StoreRepository stores;
@@ -50,49 +45,82 @@ public class DemoCatalogSeeder implements CommandLineRunner {
                 item("Mother Dairy Toned Milk", "Mother Dairy", "Dairy", "1 L", 56, productImage("890/164/892/1325/front_en.3.400.jpg")),
                 item("Amul Pasteurised Butter", "Amul", "Dairy", "500 g", 285, productImage("890/126/201/0023/front_en.7.400.jpg")),
                 item("Mother Dairy Classic Curd", "Mother Dairy", "Dairy", "400 g", 45, productImage("890/164/802/2169/front_en.15.400.jpg")),
-                item("Paneer Classic", "Amul", "Dairy", "200 g", 90, DAIRY_IMAGE),
-                item("Fresh Tomato", "Farm Fresh", "Vegetables", "1 kg", 38, PRODUCE_IMAGE),
-                item("Red Onion", "Farm Fresh", "Vegetables", "1 kg", 42, PRODUCE_IMAGE),
-                item("Potato", "Farm Fresh", "Vegetables", "1 kg", 32, PRODUCE_IMAGE),
-                item("Green Capsicum", "Farm Fresh", "Vegetables", "500 g", 36, PRODUCE_IMAGE),
-                item("Carrot", "Farm Fresh", "Vegetables", "500 g", 32, PRODUCE_IMAGE),
-                item("Cucumber", "Farm Fresh", "Vegetables", "500 g", 28, PRODUCE_IMAGE),
-                item("Robusta Banana", "Farm Fresh", "Fruits", "1 dozen", 55, FRUIT_IMAGE),
-                item("Alphonso Mango", "Farm Fresh", "Fruits", "1 kg", 180, FRUIT_IMAGE),
-                item("Nagpur Orange", "Farm Fresh", "Fruits", "1 kg", 95, FRUIT_IMAGE),
-                item("Royal Gala Apple", "Farm Fresh", "Fruits", "1 kg", 165, FRUIT_IMAGE),
-                item("Green Seedless Grapes", "Farm Fresh", "Fruits", "500 g", 75, FRUIT_IMAGE),
-                item("Pomegranate", "Farm Fresh", "Fruits", "1 kg", 155, FRUIT_IMAGE),
+                item("Paneer Classic", "Amul", "Dairy", "200 g", 90,
+                        commonsImage("2/27/Barbequed_Paneer_Tikka.jpg", "500px-Barbequed_Paneer_Tikka.jpg")),
+                item("Fresh Tomato", "Farm Fresh", "Vegetables", "1 kg", 38,
+                        commonsImage("f/f3/Bounty_of_Fresh_Tomatoes.jpg", "500px-Bounty_of_Fresh_Tomatoes.jpg")),
+                item("Red Onion", "Farm Fresh", "Vegetables", "1 kg", 42,
+                        commonsImage("2/2f/Bulk_red_onions_vegetables%2C_April_2023.jpg", "500px-Bulk_red_onions_vegetables%2C_April_2023.jpg")),
+                item("Potato", "Farm Fresh", "Vegetables", "1 kg", 32,
+                        commonsImage("2/2d/Liat_Portal_for_Foodie_Disorder_-_Potatoes_from_San_Francisco_farmers_market.jpg", "500px-Liat_Portal_for_Foodie_Disorder_-_Potatoes_from_San_Francisco_farmers_market.jpg")),
+                item("Green Capsicum", "Farm Fresh", "Vegetables", "500 g", 36,
+                        commonsImage("8/82/Chopped_Green_Bell_Pepper.jpg", "500px-Chopped_Green_Bell_Pepper.jpg")),
+                item("Carrot", "Farm Fresh", "Vegetables", "500 g", 32,
+                        commonsImage("b/ba/Carrot_on_plate.jpg", "500px-Carrot_on_plate.jpg")),
+                item("Cucumber", "Farm Fresh", "Vegetables", "500 g", 28,
+                        commonsImage("7/72/Cucumber_on_tomato_-_20180903_130208.jpg", "500px-Cucumber_on_tomato_-_20180903_130208.jpg")),
+                item("Robusta Banana", "Farm Fresh", "Fruits", "1 dozen", 55,
+                        productImage("000/059/000/1285/front_en.3.400.jpg")),
+                item("Alphonso Mango", "Farm Fresh", "Fruits", "1 kg", 180,
+                        commonsImage("8/88/Alphonso_Ripe_Mango_from_north_India.jpg", "500px-Alphonso_Ripe_Mango_from_north_India.jpg")),
+                item("Nagpur Orange", "Farm Fresh", "Fruits", "1 kg", 95,
+                        productImage("890/437/765/2288/front_en.3.400.jpg")),
+                item("Royal Gala Apple", "Farm Fresh", "Fruits", "1 kg", 165,
+                        productImage("000/000/045/5664/front_en.3.400.jpg")),
+                item("Green Seedless Grapes", "Farm Fresh", "Fruits", "500 g", 75,
+                        productImage("000/001/006/6096/front_en.20.400.jpg")),
+                item("Pomegranate", "Farm Fresh", "Fruits", "1 kg", 155,
+                        commonsImage("c/c8/Pomegranate_%28fruit%29.jpg", "500px-Pomegranate_%28fruit%29.jpg")),
                 item("India Gate Classic Basmati Rice", "India Gate", "Rice & Grains", "1 kg", 145, productImage("069/022/530/3903/front_en.5.400.jpg")),
-                item("Fortune Everyday Basmati Rice", "Fortune", "Rice & Grains", "1 kg", 105, PANTRY_IMAGE),
-                item("Tata Sampann Brown Rice", "Tata Sampann", "Rice & Grains", "1 kg", 115, PANTRY_IMAGE),
-                item("Fortune Poha", "Fortune", "Rice & Grains", "1 kg", 68, PANTRY_IMAGE),
-                item("Aashirvaad Chakki Atta", "Aashirvaad", "Rice & Grains", "5 kg", 265, PANTRY_IMAGE),
+                item("Fortune Everyday Basmati Rice", "Fortune", "Rice & Grains", "1 kg", 105,
+                        productImage("931/004/722/0363/front_en.3.400.jpg")),
+                item("Tata Sampann Brown Rice", "Tata Sampann", "Rice & Grains", "1 kg", 115,
+                        commonsImage("5/5c/Brown_Rice.jpg", "500px-Brown_Rice.jpg")),
+                item("Fortune Poha", "Fortune", "Rice & Grains", "1 kg", 68,
+                        productImage("890/600/881/2817/front_en.7.400.jpg")),
+                item("Aashirvaad Chakki Atta", "Aashirvaad", "Rice & Grains", "5 kg", 265,
+                        productImage("890/172/512/1136/front_en.3.400.jpg")),
                 item("Tata Sampann Toor Dal", "Tata Sampann", "Pulses", "1 kg", 185, productImage("890/404/392/6216/front_en.5.400.jpg")),
-                item("Tata Sampann Moong Dal", "Tata Sampann", "Pulses", "1 kg", 155, PANTRY_IMAGE),
+                item("Tata Sampann Moong Dal", "Tata Sampann", "Pulses", "1 kg", 155,
+                        productImage("890/404/392/6315/front_en.23.400.jpg")),
                 item("Tata Sampann Chana Dal", "Tata Sampann", "Pulses", "1 kg", 105, productImage("890/404/392/6643/front_en.3.400.jpg")),
                 item("Tata Sampann Masoor Dal", "Tata Sampann", "Pulses", "1 kg", 125, productImage("890/404/392/6650/front_en.3.400.jpg")),
-                item("Rajma Chitra", "Tata Sampann", "Pulses", "500 g", 95, PANTRY_IMAGE),
+                item("Rajma Chitra", "Tata Sampann", "Pulses", "500 g", 95,
+                        commonsImage("4/43/Kinnauri_Rajma.jpg", "500px-Kinnauri_Rajma.jpg")),
                 item("Kabuli Chana", "Tata Sampann", "Pulses", "500 g", 82, productImage("890/404/392/6704/front_en.3.400.jpg")),
-                item("Maggi 2-Minute Masala Noodles", "Maggi", "Snacks", "Pack of 4", 56, SNACK_IMAGE),
-                item("Parle-G Original Biscuits", "Parle", "Snacks", "800 g", 88, SNACK_IMAGE),
-                item("Britannia Good Day Butter Cookies", "Britannia", "Snacks", "600 g", 110, SNACK_IMAGE),
+                item("Maggi 2-Minute Masala Noodles", "Maggi", "Snacks", "Pack of 4", 56,
+                        productImage("890/105/885/1328/front_en.17.400.jpg")),
+                item("Parle-G Original Biscuits", "Parle", "Snacks", "800 g", 88,
+                        productImage("890/171/912/3870/front_en.27.400.jpg")),
+                item("Britannia Good Day Butter Cookies", "Britannia", "Snacks", "600 g", 110,
+                        productImage("890/106/309/2822/front_en.4.400.jpg")),
                 item("Lay's Classic Salted Chips", "Lay's", "Snacks", "3 x 48 g", 60, productImage("890/149/110/1837/front_en.26.400.jpg")),
-                item("Haldiram's Bhujia Sev", "Haldiram's", "Snacks", "400 g", 105, SNACK_IMAGE),
+                item("Haldiram's Bhujia Sev", "Haldiram's", "Snacks", "400 g", 105,
+                        productImage("890/400/440/0021/front_en.3.400.jpg")),
                 item("Sunfeast Dark Fantasy Choco Fills", "Sunfeast", "Snacks", "300 g", 115, productImage("890/172/501/5275/front_en.51.400.jpg")),
                 item("Tata Tea Premium", "Tata Tea", "Beverages", "500 g", 285, productImage("890/105/201/0615/front_en.18.400.jpg")),
                 item("Bru Instant Coffee", "Bru", "Beverages", "100 g", 165, productImage("890/103/053/5895/front_en.3.400.jpg")),
                 item("Tropicana Mixed Fruit Juice", "Tropicana", "Beverages", "1 L", 120, productImage("890/208/000/2733/front_en.3.400.jpg")),
-                item("Coca-Cola Original Taste", "Coca-Cola", "Beverages", "750 ml", 45, DRINK_IMAGE),
-                item("Bisleri Packaged Drinking Water", "Bisleri", "Beverages", "1 L", 20, DRINK_IMAGE),
-                item("Vim Dishwash Liquid", "Vim", "Household Essentials", "750 ml", 145, HOME_IMAGE),
-                item("Surf Excel Easy Wash Detergent", "Surf Excel", "Household Essentials", "1 kg", 125, HOME_IMAGE),
-                item("Ariel Matic Liquid Detergent", "Ariel", "Household Essentials", "1 L", 235, HOME_IMAGE),
-                item("Lizol Citrus Floor Cleaner", "Lizol", "Household Essentials", "1 L", 195, HOME_IMAGE),
-                item("Harpic Power Plus Toilet Cleaner", "Harpic", "Household Essentials", "1 L", 105, HOME_IMAGE),
-                item("Colgate Strong Teeth Toothpaste", "Colgate", "Household Essentials", "200 g", 115, HOME_IMAGE),
-                item("Dove Cream Beauty Bathing Bar", "Dove", "Household Essentials", "Pack of 3", 165, HOME_IMAGE),
-                item("Parachute Coconut Oil", "Parachute", "Household Essentials", "500 ml", 155, HOME_IMAGE),
+                item("Coca-Cola Original Taste", "Coca-Cola", "Beverages", "750 ml", 45,
+                        commonsImage("d/d6/Bottle_of_Coca-Cola_with_a_glass_%2852267699916%29.jpg", "500px-Bottle_of_Coca-Cola_with_a_glass_%2852267699916%29.jpg")),
+                item("Bisleri Packaged Drinking Water", "Bisleri", "Beverages", "1 L", 20,
+                        productImage("890/601/729/0064/front_en.3.400.jpg")),
+                item("Vim Dishwash Liquid", "Vim", "Household Essentials", "750 ml", 145,
+                        openProductsImage("894/110/061/8073/front_bn.3.400.jpg")),
+                item("Surf Excel Easy Wash Detergent", "Surf Excel", "Household Essentials", "1 kg", 125,
+                        openProductsImage("890/910/602/6346/front_en.8.400.jpg")),
+                item("Ariel Matic Liquid Detergent", "Ariel", "Household Essentials", "1 L", 235,
+                        commonsImage("a/a0/Ariel_pods.jpg", "500px-Ariel_pods.jpg")),
+                item("Lizol Citrus Floor Cleaner", "Lizol", "Household Essentials", "1 L", 195,
+                        openProductsImage("894/110/050/7070/front_en.3.400.jpg")),
+                item("Harpic Power Plus Toilet Cleaner", "Harpic", "Household Essentials", "1 L", 105,
+                        openProductsImage("890/139/615/2002/front_en.21.400.jpg")),
+                item("Colgate Strong Teeth Toothpaste", "Colgate", "Household Essentials", "200 g", 115,
+                        commonsImage("0/0b/2022_Colgate_Toothpaste_for_Russia_market_assorted.jpg", "500px-2022_Colgate_Toothpaste_for_Russia_market_assorted.jpg")),
+                item("Dove Cream Beauty Bathing Bar", "Dove", "Household Essentials", "Pack of 3", 165,
+                        openBeautyImage("872/018/226/4664/front_en.12.400.jpg")),
+                item("Parachute Coconut Oil", "Parachute", "Household Essentials", "500 ml", 155,
+                        productImage("890/108/800/0451/front_en.18.400.jpg")),
                 item("Tata Salt", "Tata", "Household Essentials", "1 kg", 28, productImage("890/404/390/1015/front_en.34.400.jpg")),
                 item("Fortune Sunflower Oil", "Fortune", "Household Essentials", "1 L", 155, productImage("890/600/728/0242/front_en.18.400.jpg"))
         );
@@ -138,6 +166,18 @@ public class DemoCatalogSeeder implements CommandLineRunner {
 
     private static String productImage(String path) {
         return OPEN_FOOD_FACTS + path;
+    }
+
+    private static String openProductsImage(String path) {
+        return OPEN_PRODUCTS_FACTS + path;
+    }
+
+    private static String openBeautyImage(String path) {
+        return OPEN_BEAUTY_FACTS + path;
+    }
+
+    private static String commonsImage(String filePath, String thumbnailName) {
+        return "https://thumb.wikimedia.org/wikipedia/commons/thumb/" + filePath + "/" + thumbnailName;
     }
 
     private static String demoDescription(Item item) {

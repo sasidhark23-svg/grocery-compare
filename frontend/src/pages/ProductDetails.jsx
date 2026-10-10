@@ -118,7 +118,6 @@ export default function ProductDetails() {
   if (loading) return <LoadingSpinner text="Loading product details and store comparison..." />;
   if (!product) return <div className="text-center p-12 font-bold">Product not found.</div>;
 
-  const defaultImg = "https://images.unsplash.com/photo-1542838132-92c53300491e?w=400";
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
@@ -145,10 +144,10 @@ export default function ProductDetails() {
         {/* Image */}
         <div className="w-full h-64 sm:h-72 bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 flex items-center justify-center">
           <img
-            src={product.imageUrl || defaultImg}
+            src={product.imageUrl}
             alt={product.name}
-            className={`w-full h-full ${product.imageUrl?.includes('images.openfoodfacts.org') ? 'object-contain p-3 bg-white' : 'object-cover'}`}
-            onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = defaultImg; }}
+            className={`w-full h-full ${['images.openfoodfacts.org', 'images.openproductsfacts.org', 'images.openbeautyfacts.org'].some((domain) => product.imageUrl?.includes(domain)) ? 'object-contain p-3 bg-white' : 'object-cover'}`}
+            onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.classList.add('hidden'); }}
           />
         </div>
 

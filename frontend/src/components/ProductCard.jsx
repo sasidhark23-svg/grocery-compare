@@ -5,6 +5,7 @@ import { Tag, ArrowRight } from 'lucide-react';
 
 export default function ProductCard({ product }) {
   const defaultImage = "https://images.unsplash.com/photo-1542838132-92c53300491e?w=600&auto=format&fit=crop&q=80";
+  const isPackagedProductPhoto = product.imageUrl?.includes('images.openfoodfacts.org');
 
   return (
     <motion.div
@@ -30,7 +31,7 @@ export default function ProductCard({ product }) {
           <img
             src={product.imageUrl || defaultImage}
             alt={product.name}
-            className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+            className={`w-full h-full ${isPackagedProductPhoto ? 'object-contain p-2 bg-white' : 'object-cover'} group-hover:scale-105 transition duration-300`}
             onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = defaultImage; }}
           />
         </div>

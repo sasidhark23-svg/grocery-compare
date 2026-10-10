@@ -61,6 +61,9 @@ export default function Footer() {
           </p>
         </div>
         <p className="mt-4 text-center text-xs text-gray-500">Sample prices and store availability are illustrative and are not live retailer data.</p>
+        <p className="mt-2 text-center text-xs text-gray-500">
+          Some packaged product photos via <a href="https://world.openfoodfacts.org/" target="_blank" rel="noreferrer" className="underline hover:text-emerald-400">Open Food Facts</a> (<a href="https://openfoodfacts.github.io/documentation/docs/Product-Opener/api/tutorials/license-be-on-the-legal-side/" target="_blank" rel="noreferrer" className="underline hover:text-emerald-400">CC BY-SA</a>).
+        </p>
       </div>
     </footer>
   );

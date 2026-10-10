@@ -147,7 +147,7 @@ export default function ProductDetails() {
           <img
             src={product.imageUrl || defaultImg}
             alt={product.name}
-            className="w-full h-full object-cover"
+            className={`w-full h-full ${product.imageUrl?.includes('images.openfoodfacts.org') ? 'object-contain p-3 bg-white' : 'object-cover'}`}
             onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = defaultImg; }}
           />
         </div>
